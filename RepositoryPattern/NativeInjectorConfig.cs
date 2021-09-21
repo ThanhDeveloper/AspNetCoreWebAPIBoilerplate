@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RepositoryPattern.Data.Repositories;
 using RepositoryPattern.Domain.Interfaces;
+using RepositoryPattern.Domain.Interfaces.IService;
+using RepositoryPattern.Repositories;
+using RepositoryPattern.Service;
 
 namespace RepositoryPattern
 {
@@ -9,6 +11,7 @@ namespace RepositoryPattern
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddScoped<ISongRepository, SongRepository>();
+            services.AddScoped<ISongService, SongService>();
         }
     }
 }
