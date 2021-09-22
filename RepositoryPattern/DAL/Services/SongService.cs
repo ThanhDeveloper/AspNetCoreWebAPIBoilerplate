@@ -2,6 +2,7 @@
 using RepositoryPattern.Domain.Entities;
 using RepositoryPattern.Domain.Interfaces;
 using RepositoryPattern.Domain.Interfaces.IService;
+using RepositoryPattern.Dtos.Song;
 using RepositoryPattern.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -29,9 +30,16 @@ namespace RepositoryPattern.Service
             await _songRepository.Remove(id);
         }
 
-        public async Task<IEnumerable<Song>> GetAll()
+        public async Task<List<SongDto>> GetAll()
         {
-            return await _songRepository.GetAll();
+            List<SongDto> songDtos = new List<SongDto>();
+            IEnumerable<Song> songs =  await _songRepository.GetAll();
+            foreach (var song in songs)
+            {
+                SongDto songDto = _mapper.Map<SongDto>(song);
+                songDtos.Add(songDto);
+            }
+            return songDtos;
         }
 
         public async Task<Song> GetSongById(int id)

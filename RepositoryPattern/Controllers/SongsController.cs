@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RepositoryPattern.Domain.Entities;
 using RepositoryPattern.Domain.Interfaces.IService;
+using RepositoryPattern.Dtos.Song;
 using RepositoryPattern.Helpers;
 using RepositoryPattern.Models;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace RepositoryPattern.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSong()
         {
-            var songs = await _songService.GetAll();
-            return Ok(ApiResponse<IEnumerable<object>>.Success(songs));
+            List<SongDto> songDtos = await _songService.GetAll();
+            return Ok(ApiResponse<List<SongDto>>.Success(songDtos));
         }
 
         [HttpPost]

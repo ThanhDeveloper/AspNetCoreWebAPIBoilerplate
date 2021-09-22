@@ -1,4 +1,5 @@
 ﻿using RepositoryPattern.Domain.Entities;
+using RepositoryPattern.Dtos.Song;
 using RepositoryPattern.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace RepositoryPattern.Domain.Interfaces.IService
 {
     public interface ISongService
     {
-        Task<IEnumerable<Song>> GetAll();
+        Task<List<SongDto>> GetAll();
         Task<Song> GetSongById(int id);
         Task CreateSong(SongRequest dto);
         Task UpdateSong(Song song);
