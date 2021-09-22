@@ -35,7 +35,7 @@ namespace RepositoryPattern.Data.Repositories
         {
             var obj = await Context.Set<TEntity>().FindAsync(id);
             if (obj == null) {
-                throw new KeyNotFoundException("RESOURCE_NOT_FOUND");
+                throw new EntityNotFoundException("RESOURCE_NOT_FOUND");
             }
             Context.Set<TEntity>().Remove(obj);
         }
