@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using RepositoryPattern.DAL.Interfaces.UnitOfWork;
+using RepositoryPattern.Data.UnitOfWork;
 using RepositoryPattern.Domain.Interfaces;
 using RepositoryPattern.Domain.Interfaces.IService;
 using RepositoryPattern.Repositories;
@@ -12,6 +14,7 @@ namespace RepositoryPattern
         {
             services.AddScoped<ISongRepository, SongRepository>();
             services.AddScoped<ISongService, SongService>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
     }
 }

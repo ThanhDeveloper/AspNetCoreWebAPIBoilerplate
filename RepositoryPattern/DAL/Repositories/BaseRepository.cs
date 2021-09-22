@@ -6,47 +6,42 @@ using System.Threading.Tasks;
 
 namespace RepositoryPattern.Data.Repositories
 {
-    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        //protected readonly DatabaseContext db;
-        internal DatabaseContext db;
+        internal DatabaseContext Context;
 
         public BaseRepository(DatabaseContext context) =>
-            db = context;
+            Context = context;
 
         public virtual async Task Add(TEntity obj)
         {
-            db.Add(obj);
-            await db.SaveChangesAsync();
+            Context.Add(obj);
         }
 
         public virtual async Task<IEnumerable<TEntity>> GetAll() =>
-            await db.Set<TEntity>().ToListAsync();
+            await Context.Set<TEntity>().ToListAsync();
 
         public virtual async Task<TEntity> GetById(int? id) =>
-            await db.Set<TEntity>().FindAsync(id);
+            await Context.Set<TEntity>().FindAsync(id);
 
 
         public virtual async Task Remove(TEntity obj)
         {
-            db.Set<TEntity>().Remove(obj);
-            await db.SaveChangesAsync();
+            Context.Set<TEntity>().Remove(obj);
         }
 
         public virtual async Task Remove(int id)
         {
-            var obj = await db.Set<TEntity>().FindAsync(id);
-            db.Set<TEntity>().Remove(obj);
-            await db.SaveChangesAsync();
+            var obj = await Context.Set<TEntity>().FindAsync(id);
+            Context.Set<TEntity>().Remove(obj);
         }
 
         public virtual async Task Update(TEntity obj)
         {
-            db.Entry(obj).State = EntityState.Modified;
-            await db.SaveChangesAsync();
+            Context.Entry(obj).State = EntityState.Modified;
         }
 
         public void Dispose() =>
-            db.Dispose();
+            Context.Dispose();
     }
 }
