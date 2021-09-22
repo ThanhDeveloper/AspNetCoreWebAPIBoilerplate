@@ -15,7 +15,7 @@ namespace RepositoryPattern.Data.Repositories
 
         public virtual async Task Add(TEntity obj)
         {
-            Context.Add(obj);
+            await Context.AddAsync(obj);
         }
 
         public virtual async Task<IEnumerable<TEntity>> GetAll() =>
