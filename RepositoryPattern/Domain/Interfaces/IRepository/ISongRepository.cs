@@ -2,7 +2,7 @@
 
 namespace RepositoryPattern.Domain.Interfaces
 {
-    public interface ISongRepository: IRepositoryBase<Song>
+    public interface ISongRepository: IBaseRepository<Song>
     {
     }
 }

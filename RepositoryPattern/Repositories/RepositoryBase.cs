@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryPattern.Data.Repositories
 {
-    public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
+    public abstract class RepositoryBase<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         protected readonly DatabaseContext db;
 

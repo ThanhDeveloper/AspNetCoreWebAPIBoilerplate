@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryPattern.Domain.Interfaces
 {
-    public interface IRepositoryBase<TEntity> : IDisposable where TEntity : class
+    public interface IBaseRepository<TEntity> : IDisposable where TEntity : class
     {
         Task Add(TEntity obj);
         Task<TEntity> GetById(int? id);
