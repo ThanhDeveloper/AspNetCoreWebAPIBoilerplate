@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace RepositoryPattern.Data.Repositories
 {
-    public abstract class RepositoryBase<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        protected readonly DatabaseContext db;
+        //protected readonly DatabaseContext db;
+        internal DatabaseContext db;
 
-        public RepositoryBase(DatabaseContext context) =>
+        public BaseRepository(DatabaseContext context) =>
             db = context;
 
         public virtual async Task Add(TEntity obj)
