@@ -12,6 +12,7 @@ Package:
 - FluentValidation (10.3.3)
 - AutoMapper.Extensions.Microsoft.DependencyInjection (8.1.1)
 - AutoMapper (10.1.1) 
+- FluentValidation.AspNetCore (10.3.3)
 
 Database: Postgres SQL
 
@@ -20,3 +21,15 @@ Target Framwork: .Net core 3.1 (long time support)
 Command: 
 - cd RepositoryPattern
 - dotnet ef database update init-tbl
+
+Global exception:
+- Handle business logic exception
+- context exception
+
+Api Response: 
+- Success 
+- Failed
+
+Log:
+- Write log txt
+

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RepositoryPattern.Common.Exceptions;
 using RepositoryPattern.Data.Context;
 using RepositoryPattern.Domain.Interfaces;
 using System.Collections.Generic;
@@ -33,6 +34,9 @@ namespace RepositoryPattern.Data.Repositories
         public virtual async Task Remove(int id)
         {
             var obj = await Context.Set<TEntity>().FindAsync(id);
+            if (obj == null) {
+                throw new KeyNotFoundException("RESOURCE_NOT_FOUND");
+            }
             Context.Set<TEntity>().Remove(obj);
         }
 

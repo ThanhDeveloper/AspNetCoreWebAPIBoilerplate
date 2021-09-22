@@ -6,8 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using RepositoryPattern.Common.Exceptions;
 using RepositoryPattern.Data.Context;
 using RepositoryPattern.Mapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 namespace RepositoryPattern
 {
@@ -78,6 +81,15 @@ namespace RepositoryPattern
 
             //register service 
             NativeInjectorConfig.RegisterServices(services);
+
+            //Global exception
+            services.AddMvcCore(
+                    options =>
+                    {
+                        options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                    }
+                )
+            .AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining(typeof(IValidator)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
