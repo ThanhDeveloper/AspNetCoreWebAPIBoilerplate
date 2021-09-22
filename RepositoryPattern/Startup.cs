@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using RepositoryPattern.Data.Context;
 using RepositoryPattern.Extensions;
+using RepositoryPattern.Mapper;
 
 namespace RepositoryPattern
 {
@@ -28,7 +29,9 @@ namespace RepositoryPattern
 
             services.AddDbContextPool<DatabaseContext>(options => options.UseNpgsql(connectionString));
 
-            services.AddAutoMapper(typeof(AutoMapperConfiguration).Assembly);
+            //Auto mapper configuration
+            services.AddAutoMapper(typeof(DataServiceToCommandDto).Assembly);
+            services.AddAutoMapper(typeof(EntityToCommandDataService).Assembly);
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
@@ -37,17 +40,18 @@ namespace RepositoryPattern
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            //swagger
             services.AddSwaggerGen(swagger =>
             {
                 //This is to generate the Default UI of Swagger Documentation    
                 swagger.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Dagio Web API",
-                    Description = "Authentication and Authorization in ASP.NET with JWT and Swagger"
+                    Title = "Web API",
+                    Description = "The Repository pattern in ASP.NET with JWT and Swagger"
                 });
 
-                /*// To Enable authorization using Swagger (JWT)    
+               // To Enable authorization using Swagger (JWT)    
                 swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
@@ -71,9 +75,10 @@ namespace RepositoryPattern
                             new string[] {}
 
                     }
-                });*/
+                });
             });
 
+            //register service 
             NativeInjectorConfig.RegisterServices(services);
         }
 

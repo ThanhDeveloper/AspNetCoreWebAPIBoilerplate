@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RepositoryPattern.DAL.DataService;
 using RepositoryPattern.Domain.Entities;
 using RepositoryPattern.Domain.Interfaces;
 using RepositoryPattern.Domain.Interfaces.IService;
@@ -30,21 +31,23 @@ namespace RepositoryPattern.Service
             await _songRepository.Remove(id);
         }
 
-        public async Task<List<SongDto>> GetAll()
+        public async Task<List<SongDataService>> GetAll()
         {
-            List<SongDto> songDtos = new List<SongDto>();
-            IEnumerable<Song> songs =  await _songRepository.GetAll();
+            List<SongDataService> songDataServices = new List<SongDataService>();
+            IEnumerable<Song> songs = await _songRepository.GetAll();
             foreach (var song in songs)
             {
-                SongDto songDto = _mapper.Map<SongDto>(song);
-                songDtos.Add(songDto);
+                SongDataService songDataService = _mapper.Map<SongDataService>(song);
+                songDataServices.Add(songDataService);
             }
-            return songDtos;
+            return songDataServices;
         }
 
-        public async Task<Song> GetSongById(int id)
+        public async Task<SongDataService> GetSongById(int id)
         {
-            return await _songRepository.GetById(id);
+            Song song = await _songRepository.GetById(id);
+            SongDataService songDataService = _mapper.Map<SongDataService>(song);
+            return songDataService;
         }
 
         public async Task UpdateSong(Song song)

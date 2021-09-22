@@ -9,7 +9,7 @@ namespace RepositoryPattern.Models
     {
         public string name { get; set; }
         public string author { get; set; }
-        public string kind_of_music { get; set; }
+        public string kindOfMusic { get; set; }
         public decimal rating { get; set; }
         public int view { get; set; }
     }

@@ -29,7 +29,7 @@ namespace RepositoryPattern.Migrations
                         .IsRequired()
                         .HasColumnType("character varying(50)");
 
-                    b.Property<string>("kind_of_music")
+                    b.Property<string>("kindOfMusic")
                         .HasColumnType("character varying(50)");
 
                     b.Property<string>("name")
@@ -54,7 +54,7 @@ namespace RepositoryPattern.Migrations
                         {
                             id = 1,
                             author = "Sơn Tùng MTP",
-                            kind_of_music = "Pop",
+                            kindOfMusic = "Pop",
                             name = "Lạc trôi",
                             rating = 4.6m,
                             view = 120000
@@ -63,7 +63,7 @@ namespace RepositoryPattern.Migrations
                         {
                             id = 2,
                             author = "Lê Bảo Bình",
-                            kind_of_music = "Nhạc Trẻ",
+                            kindOfMusic = "Nhạc Trẻ",
                             name = "Sai cách yêu",
                             rating = 4.2m,
                             view = 45000

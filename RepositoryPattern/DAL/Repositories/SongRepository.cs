@@ -7,9 +7,6 @@ namespace RepositoryPattern.Repositories
 {
     public class SongRepository : BaseRepository<Song>, ISongRepository
     {
-        public SongRepository(DatabaseContext context) : base(context)
-        {
-
-        }
+        public SongRepository(DatabaseContext context) : base(context){}
     }
 }

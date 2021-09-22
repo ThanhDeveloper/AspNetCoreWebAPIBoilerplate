@@ -21,7 +21,7 @@ namespace RepositoryPattern.Data.EntityConfiguration
                 .HasColumnType("character varying(50)")
                 .IsRequired();
 
-            builder.Property(p => p.kind_of_music)
+            builder.Property(p => p.kindOfMusic)
                 .HasColumnType("character varying(50)");
 
             builder.Property(p => p.rating)

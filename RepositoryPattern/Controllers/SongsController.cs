@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using RepositoryPattern.DAL.DataService;
 using RepositoryPattern.Domain.Entities;
 using RepositoryPattern.Domain.Interfaces.IService;
 using RepositoryPattern.Dtos.Song;
@@ -14,16 +16,24 @@ namespace RepositoryPattern.Controllers
     public class SongsController : ControllerBase
     { 
         private readonly ISongService _songService;
+        private readonly IMapper _mapper;
 
-        public SongsController( ISongService songService)
+        public SongsController( ISongService songService, IMapper mapper)
         {
             _songService = songService;
+            _mapper = mapper; 
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSong()
+        public async Task<IActionResult> GetSongs()
         {
-            List<SongDto> songDtos = await _songService.GetAll();
+            List<SongDto> songDtos = new List<SongDto>();
+            List<SongDataService> songDataServices = await _songService.GetAll();
+            foreach(SongDataService songDataService in songDataServices)
+            {
+                SongDto songDto = _mapper.Map<SongDto>(songDataService);
+                songDtos.Add(songDto); 
+            }
             return Ok(ApiResponse<List<SongDto>>.Success(songDtos));
         }
 

@@ -1,4 +1,5 @@
-﻿using RepositoryPattern.Domain.Entities;
+﻿using RepositoryPattern.DAL.DataService;
+using RepositoryPattern.Domain.Entities;
 using RepositoryPattern.Dtos.Song;
 using RepositoryPattern.Models;
 using System;
@@ -10,8 +11,8 @@ namespace RepositoryPattern.Domain.Interfaces.IService
 {
     public interface ISongService
     {
-        Task<List<SongDto>> GetAll();
-        Task<Song> GetSongById(int id);
+        Task<List<SongDataService>> GetAll();
+        Task<SongDataService> GetSongById(int id);
         Task CreateSong(SongRequest dto);
         Task UpdateSong(Song song);
         Task RemoveSong(int id);

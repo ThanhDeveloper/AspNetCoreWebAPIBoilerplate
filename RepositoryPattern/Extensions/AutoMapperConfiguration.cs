@@ -8,8 +8,6 @@ namespace RepositoryPattern.Extensions
     {
         public AutoMapperConfiguration()
         {
-            //Song
-            CreateMap<Song, SongDto>();
         }
     }
 }
