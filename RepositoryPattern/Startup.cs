@@ -32,6 +32,7 @@ namespace RepositoryPattern
 
             //Auto mapper configuration
             services.AddAutoMapper(typeof(DataServiceToCommandDto).Assembly);
+            services.AddAutoMapper(typeof(DtoToCommandEntity).Assembly);
             services.AddAutoMapper(typeof(EntityToCommandDataService).Assembly);
 
             services.AddControllersWithViews();
