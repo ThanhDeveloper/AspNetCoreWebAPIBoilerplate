@@ -57,7 +57,7 @@ namespace RepositoryPattern.Service
 
         public async Task DeleteSong(int id)
         {
-            await SongRepository.Remove(id);
+            await SongRepository.Delete(id);
             await UnitOfWork.CompleteAsync();
         }
     }

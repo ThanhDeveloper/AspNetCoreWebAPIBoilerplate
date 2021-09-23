@@ -8,19 +8,19 @@ namespace RepositoryPattern.Data.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly DatabaseContext _context;
-        public ISongRepository songRepository { get; }
+        private readonly DatabaseContext Context;
+        public ISongRepository SongRepository { get; }
 
         public UnitOfWork(DatabaseContext context,
             ISongRepository songRepo)
         {
-            _context = context;
-            songRepository = songRepo;
+            Context = context;
+            SongRepository = songRepo;
         }
 
         public async Task CompleteAsync()
         {
-           await _context.SaveChangesAsync();
+           await Context.SaveChangesAsync();
         }
 
         public void Dispose()
@@ -32,7 +32,7 @@ namespace RepositoryPattern.Data.UnitOfWork
         {
             if (disposing)
             {
-                _context.Dispose();
+                Context.Dispose();
             }
         }
     }

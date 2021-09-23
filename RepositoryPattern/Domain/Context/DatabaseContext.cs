@@ -9,7 +9,7 @@ namespace RepositoryPattern.Data.Context
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) =>
-            modelBuilder.ApplyConfiguration(new SongEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new SongEntityTypeConfiguration());
 
         public DbSet<Song> m_song { get; set; }
     }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace RepositoryPattern.Data.EntityConfiguration
 {
-    public class SongEntityConfiguration : IEntityTypeConfiguration<Song>
+    public class SongEntityTypeConfiguration : IEntityTypeConfiguration<Song>
     {
         public void Configure(EntityTypeBuilder<Song> builder)
         {

@@ -10,7 +10,7 @@ namespace RepositoryPattern.Domain.Interfaces
         Task<TEntity> GetById(int? id);
         Task<IEnumerable<TEntity>> GetAll();
         Task Update(TEntity obj);
-        Task Remove(TEntity obj);
-        Task Remove(int id);
+        Task Delete(TEntity obj);
+        Task Delete(int id);
     }
 }

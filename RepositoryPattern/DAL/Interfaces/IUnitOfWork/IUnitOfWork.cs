@@ -6,7 +6,7 @@ namespace RepositoryPattern.DAL.Interfaces.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        ISongRepository songRepository { get; }
+        ISongRepository SongRepository { get; }
         Task CompleteAsync();
     }
 }

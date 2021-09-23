@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace RepositoryPattern.Controllers
 {
     [ApiController]
-    public class ControllerMaster : ControllerBase
+    public class MastersController : ControllerBase
     {
         public static IMapper Mapper;
     }

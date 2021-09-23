@@ -26,12 +26,12 @@ namespace RepositoryPattern.Data.Repositories
             await Context.Set<TEntity>().FindAsync(id);
 
 
-        public virtual async Task Remove(TEntity obj)
+        public virtual async Task Delete(TEntity obj)
         {
             Context.Set<TEntity>().Remove(obj);
         }
 
-        public virtual async Task Remove(int id)
+        public virtual async Task Delete(int id)
         {
             var obj = await Context.Set<TEntity>().FindAsync(id);
             if (obj == null) {

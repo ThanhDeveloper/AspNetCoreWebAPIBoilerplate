@@ -13,7 +13,7 @@ namespace RepositoryPattern.Controllers
 {
     [Route("api/songs")]
     [ApiController]
-    public class SongsController : ControllerMaster
+    public class SongsController : MastersController
     { 
         private readonly ISongService SongService;
 

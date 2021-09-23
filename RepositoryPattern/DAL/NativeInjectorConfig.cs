@@ -12,8 +12,8 @@ namespace RepositoryPattern
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-            services.AddScoped<ISongRepository, SongRepository>();
-            services.AddScoped<ISongService, SongService>();
+            services.AddTransient<ISongRepository, SongRepository>();
+            services.AddTransient<ISongService, SongService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
     }
