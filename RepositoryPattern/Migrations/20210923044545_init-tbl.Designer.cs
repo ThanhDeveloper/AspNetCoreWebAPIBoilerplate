@@ -9,7 +9,7 @@ using RepositoryPattern.Data.Context;
 namespace RepositoryPattern.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210923042919_init-tbl")]
+    [Migration("20210923044545_init-tbl")]
     partial class inittbl
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,7 +58,7 @@ namespace RepositoryPattern.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("m_song");
+                    b.ToTable("d_songs");
 
                     b.HasData(
                         new

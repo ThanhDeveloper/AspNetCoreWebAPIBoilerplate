@@ -8,7 +8,7 @@ namespace RepositoryPattern.Data.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Song> builder)
         {
-            builder.ToTable("m_song");
+            builder.ToTable("d_songs");
 
             builder.Property(p => p.Id)
                 .HasColumnName("id")

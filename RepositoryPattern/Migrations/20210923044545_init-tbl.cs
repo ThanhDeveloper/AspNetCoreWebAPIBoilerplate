@@ -8,7 +8,7 @@ namespace RepositoryPattern.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "m_song",
+                name: "d_songs",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
@@ -21,11 +21,11 @@ namespace RepositoryPattern.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_m_song", x => x.id);
+                    table.PrimaryKey("PK_d_songs", x => x.id);
                 });
 
             migrationBuilder.InsertData(
-                table: "m_song",
+                table: "d_songs",
                 columns: new[] { "id", "author", "kind_of_music", "name", "rating", "view" },
                 values: new object[,]
                 {
@@ -34,8 +34,8 @@ namespace RepositoryPattern.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_m_song_id",
-                table: "m_song",
+                name: "IX_d_songs_id",
+                table: "d_songs",
                 column: "id",
                 unique: true);
         }
@@ -43,7 +43,7 @@ namespace RepositoryPattern.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "m_song");
+                name: "d_songs");
         }
     }
 }

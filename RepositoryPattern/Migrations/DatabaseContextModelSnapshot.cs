@@ -56,7 +56,7 @@ namespace RepositoryPattern.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("m_song");
+                    b.ToTable("d_songs");
 
                     b.HasData(
                         new
