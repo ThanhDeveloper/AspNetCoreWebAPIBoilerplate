@@ -13,10 +13,10 @@ namespace RepositoryPattern.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "character varying(50)", nullable: false),
-                    author = table.Column<string>(type: "character varying(50)", nullable: false),
-                    kindOfMusic = table.Column<string>(type: "character varying(50)", nullable: true),
-                    rating = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    author = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    kind_of_music = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    rating = table.Column<decimal>(type: "numeric", nullable: false),
                     view = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -26,7 +26,7 @@ namespace RepositoryPattern.Migrations
 
             migrationBuilder.InsertData(
                 table: "m_song",
-                columns: new[] { "id", "author", "kindOfMusic", "name", "rating", "view" },
+                columns: new[] { "id", "author", "kind_of_music", "name", "rating", "view" },
                 values: new object[,]
                 {
                     { 1, "Sơn Tùng MTP", "Pop", "Lạc trôi", 4.6m, 120000 },

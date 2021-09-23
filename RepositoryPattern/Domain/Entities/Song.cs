@@ -4,23 +4,23 @@ namespace RepositoryPattern.Domain.Entities
 {
     public class Song
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string author { get; set; }
-        public string kindOfMusic { get; set; }
-        public decimal rating { get; set; }
-        public int view { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Author { get; set; }
+        public string KindOfMusic { get; set; }
+        public decimal Rating { get; set; }
+        public int View { get; set; }
 
         public Song() { }
 
         public Song(int id, string name, string author, string kindOfMusic, decimal rating, int view) 
         {
-            this.id = id;
-            this.name = name;
-            this.author = author;
-            this.kindOfMusic = kindOfMusic;
-            this.rating = rating;
-            this.view = view;
+            Id = id;
+            Name = name;
+            Author = author;
+            KindOfMusic = kindOfMusic;
+            Rating = rating;
+            View = view;
         }
     }
 }

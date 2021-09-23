@@ -10,27 +10,31 @@ namespace RepositoryPattern.Data.EntityConfiguration
         {
             builder.ToTable("m_song");
 
-            builder.Property(p => p.id)
+            builder.Property(p => p.Id)
+                .HasColumnName("id")
                 .ValueGeneratedOnAdd();
 
-            builder.Property(p => p.name)
-                .HasColumnType("character varying(50)")
+            builder.Property(p => p.Name)
+                .HasColumnName("name")
+                .HasMaxLength(50)
                 .IsRequired();
 
-            builder.Property(p => p.author)
-                .HasColumnType("character varying(50)")
+            builder.Property(p => p.Author)
+                .HasColumnName("author")
+                .HasMaxLength(50)
                 .IsRequired();
 
-            builder.Property(p => p.kindOfMusic)
-                .HasColumnType("character varying(50)");
+            builder.Property(p => p.KindOfMusic)
+                .HasColumnName("kind_of_music")
+                .HasMaxLength(50);
 
-            builder.Property(p => p.rating)
-                .HasColumnType("numeric(18,2)");
+            builder.Property(p => p.Rating)
+                .HasColumnName("rating");
 
-            builder.Property(p => p.view)
-                .HasColumnType("integer");
+            builder.Property(p => p.View)
+                .HasColumnName("view");
 
-            builder.HasIndex(x => new { x.id }).IsUnique();
+            builder.HasIndex(x => new { x.Id }).IsUnique();
 
             builder.HasData(
                 new Song(1, "Lạc trôi", "Sơn Tùng MTP", "Pop", 4.6m, 120000),

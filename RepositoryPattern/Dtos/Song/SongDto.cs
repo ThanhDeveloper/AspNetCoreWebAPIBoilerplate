@@ -2,9 +2,9 @@
 {
     public class SongDto
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string author { get; set; }
-        public string kind_of_music { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Author { get; set; }
+        public string KindOfMusic { get; set; }
     }
 }
