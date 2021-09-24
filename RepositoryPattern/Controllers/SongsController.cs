@@ -4,6 +4,7 @@ using RepositoryPattern.DAL.DataService;
 using RepositoryPattern.Domain.Entities;
 using RepositoryPattern.Domain.Interfaces.IService;
 using RepositoryPattern.Dtos.Song;
+using RepositoryPattern.Extensions;
 using RepositoryPattern.Helpers;
 using RepositoryPattern.Models;
 using System.Collections.Generic;
@@ -65,5 +66,13 @@ namespace RepositoryPattern.Controllers
             await SongService.DeleteSong(id);
             return NoContent();
         }
+
+        //Authorize 
+        /*[HttpGet("me")]
+        public async Task<IActionResult> GetSong(int id)
+        {
+            await SongService.GetSongById(ClaimsPrincipalExtensions.GetLoggedInUserId<int>(User));
+            return NoContent();
+        }*/
     }
 }
