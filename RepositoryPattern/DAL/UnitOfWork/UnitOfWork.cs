@@ -1,26 +1,26 @@
-﻿using RepositoryPattern.DAL.Interfaces.UnitOfWork;
-using RepositoryPattern.Data.Context;
-using RepositoryPattern.Domain.Interfaces;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using RepositoryPattern.DAL.Interfaces.IRepository;
+using RepositoryPattern.DAL.Interfaces.IUnitOfWork;
+using RepositoryPattern.Domain.Context;
 
-namespace RepositoryPattern.Data.UnitOfWork
+namespace RepositoryPattern.DAL.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
-        private readonly DatabaseContext Context;
+        private readonly DatabaseContext _context;
         public ISongRepository SongRepository { get; }
 
         public UnitOfWork(DatabaseContext context,
             ISongRepository songRepo)
         {
-            Context = context;
+            _context = context;
             SongRepository = songRepo;
         }
 
         public async Task CompleteAsync()
         {
-           await Context.SaveChangesAsync();
+           await _context.SaveChangesAsync();
         }
 
         public void Dispose()
@@ -28,11 +28,12 @@ namespace RepositoryPattern.Data.UnitOfWork
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        protected virtual void Dispose(bool disposing)
+
+        private void Dispose(bool disposing)
         {
             if (disposing)
             {
-                Context.Dispose();
+                _context.Dispose();
             }
         }
     }

@@ -18,7 +18,7 @@ namespace RepositoryPattern.Common.Exceptions
             return sb.ToString();
         }
 
-        public static void GetExceptionTechnicalInfo(this Exception ex, StringBuilder sb)
+        private static void GetExceptionTechnicalInfo(this Exception ex, StringBuilder sb)
         {
             sb.AppendLine();
             sb.AppendFormat("Exception Type: {0}", ex.GetType().Name);

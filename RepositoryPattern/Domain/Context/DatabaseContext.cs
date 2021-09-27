@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RepositoryPattern.Data.EntityConfiguration;
 using RepositoryPattern.Domain.Entities;
+using RepositoryPattern.Domain.EntityTypeConfigurations;
 
-namespace RepositoryPattern.Data.Context
+namespace RepositoryPattern.Domain.Context
 {
     public class DatabaseContext : DbContext
     {
@@ -11,6 +11,6 @@ namespace RepositoryPattern.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder) =>
             modelBuilder.ApplyConfiguration(new SongEntityTypeConfiguration());
 
-        public DbSet<Song> m_song { get; set; }
+        public DbSet<Song> Songs { get; set; }
     }
 }

@@ -1,8 +1,8 @@
-﻿using RepositoryPattern.Domain.Interfaces;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using RepositoryPattern.DAL.Interfaces.IRepository;
 
-namespace RepositoryPattern.DAL.Interfaces.UnitOfWork
+namespace RepositoryPattern.DAL.Interfaces.IUnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {

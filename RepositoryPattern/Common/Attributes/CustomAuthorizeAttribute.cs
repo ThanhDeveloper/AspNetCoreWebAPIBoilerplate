@@ -12,7 +12,7 @@ namespace RepositoryPattern.Common.Attributes
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public class CustomAuthorizeAttribute : AuthorizeAttribute, IAuthorizationFilter
     {
-        public string[] Authorities { get; set; }
+        private string[] Authorities { get; set; }
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
@@ -25,7 +25,7 @@ namespace RepositoryPattern.Common.Attributes
                 return;
 
             //token not send
-            if (roles == null || roles.Count == 0)
+            if (roles.Count == 0)
             {
                 context.Result = new ObjectResult(new ApiResponseFailed<Object>()
                 {
@@ -37,7 +37,7 @@ namespace RepositoryPattern.Common.Attributes
             }
 
             var checkRoles = Authorities.Intersect(roles);// get intersect
-            if (checkRoles == null || checkRoles.Count() == 0)
+            if (checkRoles.Count() == 0)
             {
                 context.Result = new ObjectResult(new ApiResponseFailed<Object>()
                 {
@@ -47,8 +47,6 @@ namespace RepositoryPattern.Common.Attributes
                 });
                 context.HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
             }
-
-            return;
         }
     }
 }

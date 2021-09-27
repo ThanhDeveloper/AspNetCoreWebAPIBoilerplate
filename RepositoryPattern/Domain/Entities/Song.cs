@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RepositoryPattern.Domain.Entities
+﻿namespace RepositoryPattern.Domain.Entities
 {
     public class Song
     {

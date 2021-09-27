@@ -2,13 +2,13 @@
 
 namespace RepositoryPattern.Common.Exceptions
 {
-    public class InvalidArgumentException : Exception
+    public abstract class InvalidArgumentException : Exception
     {
-        public InvalidArgumentException() : base("Invalid paramter(s)")
+        protected InvalidArgumentException() : base("Invalid parameter(s)")
         {
         }
 
-        public InvalidArgumentException(string errorMessage) : base(errorMessage)
+        protected InvalidArgumentException(string errorMessage) : base(errorMessage)
         {
         }
     }

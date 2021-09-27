@@ -1,10 +1,10 @@
-﻿using RepositoryPattern.DAL.DataService;
-using RepositoryPattern.Domain.Entities;
+﻿using RepositoryPattern.Domain.Entities;
 using RepositoryPattern.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RepositoryPattern.DAL.DataServices;
 
-namespace RepositoryPattern.Domain.Interfaces.IService
+namespace RepositoryPattern.DAL.Interfaces.IService
 {
     public interface ISongService
     {

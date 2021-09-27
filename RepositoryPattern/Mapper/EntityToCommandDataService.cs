@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using RepositoryPattern.Models;
+using RepositoryPattern.DAL.DataServices;
 using RepositoryPattern.Domain.Entities;
-using RepositoryPattern.DAL.DataService;
 
 namespace RepositoryPattern.Mapper
 {

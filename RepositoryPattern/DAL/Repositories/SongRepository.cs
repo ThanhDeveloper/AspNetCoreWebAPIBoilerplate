@@ -1,9 +1,8 @@
-﻿using RepositoryPattern.Data.Context;
-using RepositoryPattern.Data.Repositories;
+﻿using RepositoryPattern.DAL.Interfaces.IRepository;
+using RepositoryPattern.Domain.Context;
 using RepositoryPattern.Domain.Entities;
-using RepositoryPattern.Domain.Interfaces;
 
-namespace RepositoryPattern.Repositories
+namespace RepositoryPattern.DAL.Repositories
 {
     public class SongRepository : BaseRepository<Song>, ISongRepository
     {

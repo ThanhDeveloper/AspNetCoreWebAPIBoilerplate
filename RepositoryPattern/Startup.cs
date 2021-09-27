@@ -7,10 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using RepositoryPattern.Common.Exceptions;
-using RepositoryPattern.Data.Context;
 using RepositoryPattern.Mapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using RepositoryPattern.Domain.Context;
+using RepositoryPattern.IoC;
 
 namespace RepositoryPattern
 {
@@ -21,7 +22,7 @@ namespace RepositoryPattern
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -81,7 +82,7 @@ namespace RepositoryPattern
             });
 
             //register service 
-            NativeInjectorConfig.RegisterServices(services);
+            services.RegisterServices();
 
             //Global exception
             services.AddMvcCore(

@@ -5,9 +5,9 @@ namespace RepositoryPattern.Common.Exceptions
 {
     public class EntityNotFoundException : Exception
     {
-        public Type EntityType { get; set; }
+        private Type EntityType { get; }
 
-        public object Id { get; set; }
+        private object Id { get; set; }
 
         public EntityNotFoundException() : base("Entity not found !")
         {

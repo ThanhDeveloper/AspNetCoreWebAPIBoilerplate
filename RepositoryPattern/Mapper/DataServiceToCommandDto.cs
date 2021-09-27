@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using RepositoryPattern.DAL.DataService;
+using RepositoryPattern.DAL.DataServices;
 using RepositoryPattern.Dtos.Song;
 
 namespace RepositoryPattern.Mapper

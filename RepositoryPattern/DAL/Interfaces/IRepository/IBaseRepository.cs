@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RepositoryPattern.Domain.Interfaces
+namespace RepositoryPattern.DAL.Interfaces.IRepository
 {
     public interface IBaseRepository<TEntity> : IDisposable where TEntity : class
     {

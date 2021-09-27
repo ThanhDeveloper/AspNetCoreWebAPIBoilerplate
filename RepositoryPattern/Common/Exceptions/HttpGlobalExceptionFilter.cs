@@ -17,9 +17,8 @@ namespace RepositoryPattern.Common.Exceptions
 
         public HttpGlobalExceptionFilter(ILogger<HttpGlobalExceptionFilter> logger)
         {
-            _logger = logger;
         }
-
+        
         public override async Task OnExceptionAsync(ExceptionContext context)
         {
             var exception = context.Exception;
@@ -28,7 +27,7 @@ namespace RepositoryPattern.Common.Exceptions
 
             if (context.Exception.GetType() == typeof(BusinessException) || context.Exception.GetType().BaseType == typeof(BusinessException))
             {
-                // handle bussiness exception
+                // handle business exception
                 var businessException = (BusinessException)exception;
                 apiResponse.error_code = string.IsNullOrWhiteSpace(businessException.ErrorCode) ? exception.GetType().Name : businessException.ErrorCode;
                 apiResponse.message = exception.Message;

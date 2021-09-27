@@ -1,8 +1,8 @@
-﻿using RepositoryPattern.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RepositoryPattern.Domain.Entities;
 
-namespace RepositoryPattern.Data.EntityConfiguration
+namespace RepositoryPattern.Domain.EntityTypeConfigurations
 {
     public class SongEntityTypeConfiguration : IEntityTypeConfiguration<Song>
     {
@@ -37,8 +37,8 @@ namespace RepositoryPattern.Data.EntityConfiguration
             builder.HasIndex(x => new { x.Id }).IsUnique();
 
             builder.HasData(
-                new Song(1, "Lạc trôi", "Sơn Tùng MTP", "Pop", 4.6m, 120000),
-                new Song(2, "Sai cách yêu", "Lê Bảo Bình", "Nhạc Trẻ", 4.2m, 45000)
+                new Song(1, "Remember When", "Alan Jackson", "Ballad", 4.6m, 120000),
+                new Song(2, "Rolling in the deep ", "Adele", "Pop", 4.2m, 45000)
             );
         }
     }

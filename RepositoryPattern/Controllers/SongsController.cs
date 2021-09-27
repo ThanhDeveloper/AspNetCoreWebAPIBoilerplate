@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using RepositoryPattern.DAL.DataService;
 using RepositoryPattern.Domain.Entities;
-using RepositoryPattern.Domain.Interfaces.IService;
 using RepositoryPattern.Dtos.Song;
-using RepositoryPattern.Extensions;
 using RepositoryPattern.Helpers;
 using RepositoryPattern.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using RepositoryPattern.DAL.DataServices;
+using RepositoryPattern.DAL.Interfaces.IService;
 
 namespace RepositoryPattern.Controllers
 {
@@ -16,11 +16,13 @@ namespace RepositoryPattern.Controllers
     [ApiController]
     public class SongsController : MastersController
     { 
-        private readonly ISongService SongService;
+        private readonly ISongService _songService;
+        private readonly IConfiguration _configuration;
 
-        public SongsController( ISongService songService, IMapper mapper)
+        public SongsController( ISongService songService, IMapper mapper, IConfiguration configuration)
         {
-            SongService = songService;
+            _configuration = configuration;
+            _songService = songService;
             Mapper = mapper;
         }
 
@@ -28,7 +30,7 @@ namespace RepositoryPattern.Controllers
         public async Task<IActionResult> GetSongs()
         {
             List<SongDto> songDtos = new List<SongDto>();
-            List<SongDataService> songDataServices = await SongService.GetAll();
+            List<SongDataService> songDataServices = await _songService.GetAll();
             foreach(SongDataService songDataService in songDataServices)
             {
                 SongDto songDto = Mapper.Map<SongDto>(songDataService);
@@ -39,9 +41,9 @@ namespace RepositoryPattern.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetSongByID(int id)
+        public async Task<IActionResult> GetSongById(int id)
         {
-            SongDataService songDataService =  await SongService.GetSongById(id);
+            SongDataService songDataService =  await _songService.GetSongById(id);
             SongDto songDto = Mapper.Map<SongDto>(songDataService);
             return Ok(ApiResponse<SongDto>.Success(songDto));
         }
@@ -49,21 +51,21 @@ namespace RepositoryPattern.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSong(SongRequest dto)
         {
-            await SongService.AddSong(dto);
+            await _songService.AddSong(dto);
             return StatusCode(201);
         }
 
         [HttpPatch]
         public async Task<IActionResult> UpdateSong(Song song)
         {
-            await SongService.UpdateSong(song);
+            await _songService.UpdateSong(song);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSong(int id)
         {
-            await SongService.DeleteSong(id);
+            await _songService.DeleteSong(id);
             return NoContent();
         }
 

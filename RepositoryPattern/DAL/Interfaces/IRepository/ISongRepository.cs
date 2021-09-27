@@ -1,6 +1,6 @@
 ﻿using RepositoryPattern.Domain.Entities;
 
-namespace RepositoryPattern.Domain.Interfaces
+namespace RepositoryPattern.DAL.Interfaces.IRepository
 {
     public interface ISongRepository: IBaseRepository<Song>
     {
