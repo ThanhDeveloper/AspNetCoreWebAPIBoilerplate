@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using RepositoryPattern.DAL.DataServices;
+using RepositoryPattern.DAL.Data;
 using RepositoryPattern.Dtos.Song;
 
 namespace RepositoryPattern.Mapper
@@ -10,7 +10,7 @@ namespace RepositoryPattern.Mapper
         public DataServiceToCommandDto()
         {
             //Song
-            CreateMap<SongDataService, SongDto>();
+            CreateMap<SongData, SongDto>();
         }
     }
 }

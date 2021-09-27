@@ -1,6 +1,6 @@
 ﻿using RepositoryPattern.Common;
 
-namespace RepositoryPattern.Helpers
+namespace RepositoryPattern.Dtos
 {
     public class ApiResponse<T>
     {

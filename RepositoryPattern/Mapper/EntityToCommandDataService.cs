@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using RepositoryPattern.DAL.DataServices;
+using RepositoryPattern.DAL.Data;
 using RepositoryPattern.Domain.Entities;
 
 namespace RepositoryPattern.Mapper
@@ -10,7 +10,7 @@ namespace RepositoryPattern.Mapper
         public EntityToCommandDataService()
         {
             //Song
-            CreateMap<Song, SongDataService>();
+            CreateMap<Song, SongData>();
         }
     }
 }

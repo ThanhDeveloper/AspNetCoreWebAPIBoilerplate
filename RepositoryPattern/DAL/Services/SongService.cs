@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using RepositoryPattern.DAL.DataServices;
+using RepositoryPattern.DAL.Data;
 using RepositoryPattern.DAL.Interfaces.IRepository;
 using RepositoryPattern.DAL.Interfaces.IService;
 using RepositoryPattern.DAL.Interfaces.IUnitOfWork;
 using RepositoryPattern.Domain.Entities;
-using RepositoryPattern.Models;
+using RepositoryPattern.Dtos.Song;
 
 namespace RepositoryPattern.DAL.Services
 {
-    public class SongService : ServiceMaster, ISongService
+    public class SongService : BaseService, ISongService
     {
         private readonly ISongRepository _songRepository;
 
@@ -21,34 +21,35 @@ namespace RepositoryPattern.DAL.Services
             UnitOfWork = unitOfWork;
         }
 
-        public async Task<List<SongDataService>> GetAll()
+        public async Task<List<SongData>> GetAll()
         {
-            List<SongDataService> songDataServices = new List<SongDataService>();
+            List<SongData> songDataServices = new List<SongData>();
             IEnumerable<Song> songs = await _songRepository.GetAll();
             foreach (var song in songs)
             {
-                SongDataService songDataService = Mapper.Map<SongDataService>(song);
-                songDataServices.Add(songDataService);
+                SongData songDatas = Mapper.Map<SongData>(song);
+                songDataServices.Add(songDatas);
             }
             return songDataServices;
         }
 
-        public async Task<SongDataService> GetSongById(int id)
+        public async Task<SongData> GetSongById(int id)
         {
             Song song = await _songRepository.GetById(id);
-            SongDataService songDataService = Mapper.Map<SongDataService>(song);
-            return songDataService;
+            SongData songDatas = Mapper.Map<SongData>(song);
+            return songDatas;
         }
 
-        public async Task AddSong(SongRequest dto)
+        public async Task AddSong(NewSongDto newSongDto)
         {
-            Song song = Mapper.Map<Song>(dto);
+            Song song = Mapper.Map<Song>(newSongDto);
             await _songRepository.Add(song);
             await UnitOfWork.CompleteAsync();
         }
 
-        public async Task UpdateSong(Song song)
+        public async Task UpdateSong(UpdateSongDto updateSongDto)
         {
+            Song song = Mapper.Map<Song>(updateSongDto);
             await _songRepository.Update(song);
             await UnitOfWork.CompleteAsync();
         }

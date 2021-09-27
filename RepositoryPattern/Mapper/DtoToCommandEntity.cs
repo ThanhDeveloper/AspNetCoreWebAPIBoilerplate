@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using RepositoryPattern.Domain.Entities;
-using RepositoryPattern.Models;
+using RepositoryPattern.Dtos.Song;
 
 namespace RepositoryPattern.Mapper
 {
@@ -10,7 +10,8 @@ namespace RepositoryPattern.Mapper
         public DtoToCommandEntity()
         {
             //Song
-            CreateMap< SongRequest, Song>();
+            CreateMap< NewSongDto, Song>();
+            CreateMap< UpdateSongDto, Song>();
         }
     }
 }

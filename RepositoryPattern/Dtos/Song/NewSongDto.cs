@@ -1,6 +1,6 @@
-﻿namespace RepositoryPattern.Models
+﻿namespace RepositoryPattern.Dtos.Song
 {
-    public class SongRequest
+    public class NewSongDto
     {
         public string Name { get; set; }
         public string Author { get; set; }

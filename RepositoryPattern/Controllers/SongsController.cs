@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using RepositoryPattern.Domain.Entities;
 using RepositoryPattern.Dtos.Song;
-using RepositoryPattern.Helpers;
-using RepositoryPattern.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using RepositoryPattern.DAL.DataServices;
+using RepositoryPattern.DAL.Data;
 using RepositoryPattern.DAL.Interfaces.IService;
+using RepositoryPattern.Dtos;
 
 namespace RepositoryPattern.Controllers
 {
@@ -30,10 +29,10 @@ namespace RepositoryPattern.Controllers
         public async Task<IActionResult> GetSongs()
         {
             List<SongDto> songDtos = new List<SongDto>();
-            List<SongDataService> songDataServices = await _songService.GetAll();
-            foreach(SongDataService songDataService in songDataServices)
+            List<SongData> songDatas = await _songService.GetAll();
+            foreach(SongData songData in songDatas)
             {
-                SongDto songDto = Mapper.Map<SongDto>(songDataService);
+                SongDto songDto = Mapper.Map<SongDto>(songData);
                 songDtos.Add(songDto); 
             }
             return Ok(ApiResponse<List<SongDto>>.Success(songDtos));
@@ -43,22 +42,22 @@ namespace RepositoryPattern.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetSongById(int id)
         {
-            SongDataService songDataService =  await _songService.GetSongById(id);
+            SongData songDataService =  await _songService.GetSongById(id);
             SongDto songDto = Mapper.Map<SongDto>(songDataService);
             return Ok(ApiResponse<SongDto>.Success(songDto));
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSong(SongRequest dto)
+        public async Task<IActionResult> CreateSong(NewSongDto newSongDto)
         {
-            await _songService.AddSong(dto);
+            await _songService.AddSong(newSongDto);
             return StatusCode(201);
         }
 
         [HttpPatch]
-        public async Task<IActionResult> UpdateSong(Song song)
+        public async Task<IActionResult> UpdateSong(UpdateSongDto updateSongDto)
         {
-            await _songService.UpdateSong(song);
+            await _songService.UpdateSong(updateSongDto);
             return NoContent();
         }
 

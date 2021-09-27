@@ -4,7 +4,7 @@ using RepositoryPattern.DAL.Interfaces.IUnitOfWork;
 
 namespace RepositoryPattern.DAL.Services
 {
-    public class ServiceMaster 
+    public class BaseService 
     {
         public static IConfiguration Confuguration;
         protected static IMapper Mapper;

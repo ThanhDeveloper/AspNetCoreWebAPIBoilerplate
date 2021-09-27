@@ -1,6 +1,6 @@
-﻿namespace RepositoryPattern.DAL.DataServices
+﻿namespace RepositoryPattern.DAL.Data
 {
-    public class SongDataService
+    public class SongData
     {
         public int Id { get; set; }
         public string Name { get; set; }
