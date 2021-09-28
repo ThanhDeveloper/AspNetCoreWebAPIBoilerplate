@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using RepositoryPattern.Domain.Entities;
 using RepositoryPattern.Dtos.Song;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using RepositoryPattern.DAL.Data;
@@ -28,14 +28,9 @@ namespace RepositoryPattern.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSongs()
         {
-            List<SongDto> songDtos = new List<SongDto>();
             List<SongData> songDatas = await _songService.GetAll();
-            foreach(SongData songData in songDatas)
-            {
-                SongDto songDto = Mapper.Map<SongDto>(songData);
-                songDtos.Add(songDto); 
-            }
-            return Ok(ApiResponse<List<SongDto>>.Success(songDtos));
+            List<SongDto> songDtos = songDatas.Select(x => Mapper.Map<SongDto>(x)).ToList();
+            return Ok(ApiResponse<object>.Success(songDtos));
         }
 
         [HttpGet]
