@@ -4,10 +4,10 @@ using RepositoryPattern.Domain.Entities;
 
 namespace RepositoryPattern.Mapper
 {
-    public class EntityToCommandDataService : Profile
+    public class EntityToCommandData : Profile
     {
-        //Entity => DataService
-        public EntityToCommandDataService()
+        //Entity => Data
+        public EntityToCommandData()
         {
             //Song
             CreateMap<Song, SongData>();

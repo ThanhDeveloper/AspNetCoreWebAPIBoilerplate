@@ -6,7 +6,7 @@ namespace RepositoryPattern.Mapper
 {
     public class DataToCommandDto: Profile
     {
-        //DataService => Dto
+        //Data => Dto
         public DataToCommandDto()
         {
             //Song
