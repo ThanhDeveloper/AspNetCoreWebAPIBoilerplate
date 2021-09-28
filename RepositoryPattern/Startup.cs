@@ -32,9 +32,7 @@ namespace RepositoryPattern
             services.AddDbContextPool<DatabaseContext>(options => options.UseNpgsql(connectionString));
 
             //Auto mapper configuration
-            services.AddAutoMapper(typeof(DataServiceToCommandDto).Assembly);
-            services.AddAutoMapper(typeof(DtoToCommandEntity).Assembly);
-            services.AddAutoMapper(typeof(EntityToCommandDataService).Assembly);
+            services.AddAutoMapper(typeof(DataToCommandDto).Assembly);
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

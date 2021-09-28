@@ -4,10 +4,10 @@ using RepositoryPattern.Dtos.Song;
 
 namespace RepositoryPattern.Mapper
 {
-    public class DataServiceToCommandDto: Profile
+    public class DataToCommandDto: Profile
     {
         //DataService => Dto
-        public DataServiceToCommandDto()
+        public DataToCommandDto()
         {
             //Song
             CreateMap<SongData, SongDto>();
