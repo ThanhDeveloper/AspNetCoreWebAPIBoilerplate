@@ -23,21 +23,21 @@ namespace RepositoryPattern.DAL.Services
 
         public async Task<List<SongData>> GetAll()
         {
-            List<SongData> songDataServices = new List<SongData>();
+            List<SongData> songDatas = new List<SongData>();
             IEnumerable<Song> songs = await _songRepository.GetAll();
             foreach (var song in songs)
             {
-                SongData songDatas = Mapper.Map<SongData>(song);
-                songDataServices.Add(songDatas);
+                SongData songData = Mapper.Map<SongData>(song);
+                songDatas.Add(songData);
             }
-            return songDataServices;
+            return songDatas;
         }
 
         public async Task<SongData> GetSongById(int id)
         {
             Song song = await _songRepository.GetById(id);
-            SongData songDatas = Mapper.Map<SongData>(song);
-            return songDatas;
+            SongData songData = Mapper.Map<SongData>(song);
+            return songData;
         }
 
         public async Task AddSong(NewSongDto newSongDto)

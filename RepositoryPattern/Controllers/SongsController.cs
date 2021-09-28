@@ -42,8 +42,8 @@ namespace RepositoryPattern.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetSongById(int id)
         {
-            SongData songDataService =  await _songService.GetSongById(id);
-            SongDto songDto = Mapper.Map<SongDto>(songDataService);
+            SongData songData =  await _songService.GetSongById(id);
+            SongDto songDto = Mapper.Map<SongDto>(songData);
             return Ok(ApiResponse<SongDto>.Success(songDto));
         }
 
