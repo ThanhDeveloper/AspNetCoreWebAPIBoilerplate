@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RepositoryPattern.DAL.Data;
 using RepositoryPattern.DAL.Interfaces.IRepository;
 using RepositoryPattern.DAL.Interfaces.IService;
@@ -23,21 +24,12 @@ namespace RepositoryPattern.DAL.Services
 
         public async Task<List<SongData>> GetAll()
         {
-            List<SongData> songDatas = new List<SongData>();
-            IEnumerable<Song> songs = await _songRepository.GetAll();
-            foreach (var song in songs)
-            {
-                SongData songData = Mapper.Map<SongData>(song);
-                songDatas.Add(songData);
-            }
-            return songDatas;
+            return await Mapper.ProjectTo<SongData>(_songRepository.GetAll()).ToListAsync();
         }
 
         public async Task<SongData> GetSongById(int id)
         {
-            Song song = await _songRepository.GetById(id);
-            SongData songData = Mapper.Map<SongData>(song);
-            return songData;
+            return await Mapper.ProjectTo<SongData>(_songRepository.GetById(id)).FirstOrDefaultAsync();
         }
 
         public async Task AddSong(NewSongDto newSongDto)

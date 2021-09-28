@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RepositoryPattern.Common.Exceptions;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using RepositoryPattern.DAL.Interfaces.IRepository;
 using RepositoryPattern.Domain.Context;
@@ -9,7 +10,7 @@ namespace RepositoryPattern.DAL.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        private readonly DatabaseContext _context;
+        internal DatabaseContext _context;
 
         protected BaseRepository(DatabaseContext context) =>
             _context = context;
@@ -19,12 +20,8 @@ namespace RepositoryPattern.DAL.Repositories
             await _context.AddAsync(obj);
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAll() =>
-            await _context.Set<TEntity>().ToListAsync();
-
-        public virtual async Task<TEntity> GetById(int? id) =>
-            await _context.Set<TEntity>().FindAsync(id);
-
+        public virtual IQueryable<TEntity> GetAll() => 
+            _context.Set<TEntity>();
 
         public virtual async Task Delete(TEntity obj)
         { 
