@@ -5,7 +5,7 @@ using RepositoryPattern.Domain.Entities;
 
 namespace RepositoryPattern.DAL.Repositories
 {
-    public class SongRepository : BaseRepository<Song>, ISongRepository
+    public class SongRepository : BaseRepository<Song>
     {
         public SongRepository(DatabaseContext context) : base(context){}
         
