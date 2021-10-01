@@ -13,42 +13,39 @@ namespace RepositoryPattern.DAL.Services
 {
     public class SongService : BaseService, ISongService
     {
-        private readonly ISongRepository _songRepository;
-
-        public SongService(ISongRepository songRepository, IMapper mapper, IUnitOfWork unitOfWork)
+        public SongService(IMapper mapper, IUnitOfWork unitOfWork)
         {
             Mapper = mapper;
-            _songRepository = songRepository;
             UnitOfWork = unitOfWork;
         }
 
         public async Task<List<SongData>> GetAll()
         {
-            return await Mapper.ProjectTo<SongData>(_songRepository.GetAll()).ToListAsync();
+            return await Mapper.ProjectTo<SongData>(UnitOfWork.SongRepository.GetAll()).ToListAsync();
         }
 
         public async Task<SongData> GetSongById(int id)
         {
-            return await Mapper.ProjectTo<SongData>(_songRepository.GetById(id)).FirstOrDefaultAsync();
+            return await Mapper.ProjectTo<SongData>(UnitOfWork.SongRepository.GetById(id)).FirstOrDefaultAsync();
         }
 
         public async Task AddSong(NewSongDto newSongDto)
         {
             Song song = Mapper.Map<Song>(newSongDto);
-            await _songRepository.Add(song);
+            await UnitOfWork.SongRepository.Add(song);
             await UnitOfWork.CompleteAsync();
         }
 
         public async Task UpdateSong(UpdateSongDto updateSongDto)
         {
             Song song = Mapper.Map<Song>(updateSongDto);
-            await _songRepository.Update(song);
+            await UnitOfWork.SongRepository.Update(song);
             await UnitOfWork.CompleteAsync();
         }
 
         public async Task DeleteSong(int id)
         {
-            await _songRepository.Delete(id);
+            await UnitOfWork.SongRepository.Delete(id);
             await UnitOfWork.CompleteAsync();
         }
     }

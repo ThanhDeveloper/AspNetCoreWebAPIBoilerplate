@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using RepositoryPattern.Dtos.Song;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using RepositoryPattern.DAL.Data;
 using RepositoryPattern.DAL.Interfaces.IService;
 using RepositoryPattern.Dtos;
+using RepositoryPattern.Dtos.Song;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RepositoryPattern.Controllers
 {

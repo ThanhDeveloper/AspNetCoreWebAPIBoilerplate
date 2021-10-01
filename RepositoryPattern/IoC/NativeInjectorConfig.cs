@@ -14,7 +14,7 @@ namespace RepositoryPattern.IoC
         {
             services.AddScoped<ISongRepository, SongRepository>();
             services.AddScoped<ISongService, SongService>();
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }
