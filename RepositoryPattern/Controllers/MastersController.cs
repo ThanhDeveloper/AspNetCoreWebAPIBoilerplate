@@ -6,6 +6,6 @@ namespace RepositoryPattern.Controllers
     [ApiController]
     public class MastersController : ControllerBase
     {
-        protected static IMapper Mapper;
+        public IMapper Mapper;
     }
 }
