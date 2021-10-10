@@ -7,7 +7,6 @@ using AspNetCoreTemplate.Domain.Entities;
 using AspNetCoreTemplate.Dtos.Song;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using AspNetCoreTemplate.DAL.Interfaces.IRepository;
 
 namespace AspNetCoreTemplate.DAL.Services
 {

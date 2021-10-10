@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreTemplate.Common.Exceptions;
-using AspNetCoreTemplate.DAL.Interfaces.IRepository;
 using AspNetCoreTemplate.Domain.Context;
 
 namespace AspNetCoreTemplate.DAL.Repositories
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity>  where TEntity : class
     {
         internal DatabaseContext _context;
 

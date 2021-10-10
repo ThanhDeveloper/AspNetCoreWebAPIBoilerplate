@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using AspNetCoreTemplate.Domain.Context;
 using AspNetCoreTemplate.Domain.Entities;
-using AspNetCoreTemplate.DAL.Interfaces.IRepository;
 
 namespace AspNetCoreTemplate.DAL.Repositories
 {

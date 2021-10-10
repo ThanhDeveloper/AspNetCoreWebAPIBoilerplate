@@ -3,8 +3,6 @@ using AspNetCoreTemplate.DAL.Interfaces.IUnitOfWork;
 using AspNetCoreTemplate.DAL.Services;
 using AspNetCoreTemplate.DAL.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
-using AspNetCoreTemplate.DAL.Interfaces.IRepository;
-using AspNetCoreTemplate.DAL.Repositories;
 
 namespace AspNetCoreTemplate.IoC
 {

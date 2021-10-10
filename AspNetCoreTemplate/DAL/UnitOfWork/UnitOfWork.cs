@@ -1,5 +1,4 @@
-﻿using AspNetCoreTemplate.DAL.Interfaces.IRepository;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using AspNetCoreTemplate.DAL.Interfaces.IUnitOfWork;
 using AspNetCoreTemplate.DAL.Repositories;
