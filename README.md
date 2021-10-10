@@ -1,5 +1,5 @@
-# RepositoryPattern
-The Repository pattern adds a separation layer between the data and domain layers of an application
+# WebApplicationAspNetCoreTemplate
+Backend: This project building on the repository pattern, separation layer between the data and domain layers of an application, dependency injection, etc... 
 
 Package:
 - Swashbuckle.AspNetCore (Swagger) Version="6.2.1"
@@ -14,13 +14,14 @@ Package:
 - AutoMapper (10.1.1) 
 - FluentValidation.AspNetCore (10.3.3)
 
-Database: Postgres SQL
+Database: Postgres SQL (You can change connection method for other DBMS at Startup.cs)
 
-Target Framwork: .Net core 3.1 (long time support)
+Target Framwork: .Net core 3.1 (long time support) or Net 5.0
 
 Command: 
-- cd RepositoryPattern
-- dotnet ef database update init-tbl
+- cd WebApplicationAspNetCoreTemplate
+- dotnet ef migrations add init-tbl (you can ignore this command)
+- dotnet ef database update init-tbl (Ensure this command is executed)
 
 Global exception:
 - Handle business logic exception
