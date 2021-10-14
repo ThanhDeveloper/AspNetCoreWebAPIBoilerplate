@@ -29,7 +29,9 @@ namespace AspNetCoreTemplate
         {
             var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
 
-            services.AddDbContextPool<DatabaseContext>(options => options.UseNpgsql(connectionString));
+            //services.AddDbContextPool<DatabaseContext>(options => options.UseNpgsql(connectionString));
+            
+            services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(connectionString));
 
             //Auto mapper configuration
             services.AddAutoMapper(typeof(DataToCommandDto).Assembly);

@@ -34,3 +34,6 @@ Api Response:
 Log:
 - Write log txt
 
+Note:
+- Appsetting.json: Please set polling false for development env and true for production env
+
