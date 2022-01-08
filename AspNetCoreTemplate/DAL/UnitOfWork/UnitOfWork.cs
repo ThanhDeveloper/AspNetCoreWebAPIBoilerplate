@@ -28,18 +28,6 @@ namespace AspNetCoreTemplate.DAL.UnitOfWork
             }
         }
 
-        /*public ExampleRepository ExampleRepository
-        {
-            get
-            {
-                if (_exampleRepository == null)
-                {
-                    _exampleRepository = new ExampleRepository(_context);
-                }
-                return _exampleRepository;
-            }
-        }*/
-
         public async Task CompleteAsync()
         {
            await _context.SaveChangesAsync();
