@@ -1,17 +1,16 @@
 using AspNetCoreTemplate.Common.Exceptions;
 using AspNetCoreTemplate.Domain.Context;
+using AspNetCoreTemplate.IoC;
 using AspNetCoreTemplate.Mapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using AspNetCoreTemplate.IoC;
 
 namespace AspNetCoreTemplate
 {
