@@ -6,6 +6,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -126,7 +127,7 @@ namespace AspNetCoreTemplate
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
+                //c.RoutePrefix = string.Empty;
             });
 
             app.UseRouting();
@@ -138,7 +139,7 @@ namespace AspNetCoreTemplate
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            /*app.UseSpa(spa =>
+            app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
@@ -149,7 +150,7 @@ namespace AspNetCoreTemplate
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
-            });*/
+            });
         }
     }
 }

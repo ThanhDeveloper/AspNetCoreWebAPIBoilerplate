@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using AspNetCoreTemplate.Dtos;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
 
 namespace AspNetCoreTemplate.Common.Exceptions
 {
@@ -19,7 +18,7 @@ namespace AspNetCoreTemplate.Common.Exceptions
         {
         }
         
-        public override async Task OnExceptionAsync(ExceptionContext context)
+        public override Task OnExceptionAsync(ExceptionContext context)
         {
             var exception = context.Exception;
             //ApiErrorResult apiErrorResult;
@@ -77,6 +76,7 @@ namespace AspNetCoreTemplate.Common.Exceptions
                 context.HttpContext.Response.StatusCode = (int)code;
             }
             context.ExceptionHandled = true;
+            return Task.CompletedTask;
         }
     }
 }

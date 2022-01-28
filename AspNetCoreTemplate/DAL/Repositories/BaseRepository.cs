@@ -21,9 +21,10 @@ namespace AspNetCoreTemplate.DAL.Repositories
         public virtual IQueryable<TEntity> GetAll() => 
             _context.Set<TEntity>();
 
-        public virtual async Task Delete(TEntity obj)
-        { 
+        public Task Delete(TEntity obj)
+        {
             _context.Set<TEntity>().Remove(obj);
+            return Task.CompletedTask;
         }
 
         public virtual async Task Delete(int id)
@@ -35,9 +36,10 @@ namespace AspNetCoreTemplate.DAL.Repositories
             _context.Set<TEntity>().Remove(obj);
         }
 
-        public virtual async Task Update(TEntity obj)
+        public virtual Task Update(TEntity obj)
         {
             _context.Entry(obj).State = EntityState.Modified;
+            return Task.CompletedTask;
         }
 
         public void Dispose() =>
