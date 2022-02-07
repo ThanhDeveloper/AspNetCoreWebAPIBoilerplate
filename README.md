@@ -1,5 +1,6 @@
 # WebApplicationAspNetCoreTemplate
-Backend: This project building on the repository pattern, separation layer between the data and domain layers of an application, dependency injection, etc... 
+Frontend: SPA template with angular
+Backend: This project building on the repository - service pattern, separation layer between the data and domain layers of an application, dependency injection, auto mapper, handle global exception, etc... 
 
 Package:
 - Swashbuckle.AspNetCore (Swagger) Version="6.2.1"
@@ -34,10 +35,21 @@ Api Response:
 Log:
 - Write log txt
 
+Extensions:
+- ClaimsPrincipalExtensions
+
 Note:
 - Appsetting.json: Please set polling false for development env and true for production env
 
 Demo:
-![image](https://user-images.githubusercontent.com/48196420/151704213-060af355-5e4c-4004-9fa2-3dc53fbf8591.png)
+
+Swagger: 
+![image](https://user-images.githubusercontent.com/48196420/152674001-a637d7f7-d690-4849-b86b-3309894ae6b3.png)
+
+SPA:
+![image](https://user-images.githubusercontent.com/48196420/152788520-c3a2398c-8c87-4c07-b93a-93376818612c.png)
+
+
+
 
 

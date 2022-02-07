@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using AspNetCoreTemplate.IoC;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 
 namespace AspNetCoreTemplate
 {
@@ -127,7 +128,7 @@ namespace AspNetCoreTemplate
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
+                //c.RoutePrefix = string.Empty;
             });
 
             app.UseRouting();
@@ -139,7 +140,7 @@ namespace AspNetCoreTemplate
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            /*app.UseSpa(spa =>
+            app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
@@ -149,8 +150,9 @@ namespace AspNetCoreTemplate
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
-            });*/
+            });
         }
     }
 }
