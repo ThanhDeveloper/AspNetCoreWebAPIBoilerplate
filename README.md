@@ -1,5 +1,6 @@
 # WebApplicationAspNetCoreTemplate
 Frontend: SPA template with angular
+
 Backend: This project building on the repository - service pattern, separation layer between the data and domain layers of an application, dependency injection, auto mapper, handle global exception, etc... 
 
 Package:
