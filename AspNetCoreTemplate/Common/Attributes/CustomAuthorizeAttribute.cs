@@ -16,13 +16,13 @@ namespace AspNetCoreTemplate.Common.Attributes
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
+            //no Authorize  
+            if (Authorities == null || Authorities.Length == 0)
+                return;
+            
             var roles = context.HttpContext.User.Claims.Where(c => c.Type == ClaimTypes.Role)
                 .Select(c => c.Value)
                 .ToList();
-
-            //no Authorize
-            if (Authorities == null || Authorities.Length == 0)
-                return;
 
             //token not send
             if (roles.Count == 0)
