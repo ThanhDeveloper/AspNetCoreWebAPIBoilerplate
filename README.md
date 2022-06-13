@@ -1,56 +1,26 @@
 # WebApplicationAspNetCoreTemplate
-Frontend: SPA template with angular
 
-Backend: This project building on the repository - service pattern, separation layer between the data and domain layers of an application, dependency injection, auto mapper, handle global exception, etc... 
+This project building on the repository - service pattern, separation layer between the data and domain layers of an application, dependency injection, auto mapper, handle global exception, etc... 
 
-Package:
-- Swashbuckle.AspNetCore (Swagger) Version="6.2.1"
-- Npgsql.EntityFrameworkCore.PostgreSQL (5.0.10)
-- Microsoft.EntityFrameworkCore.Tools (5.0.10)
-- Microsoft.EntityFrameworkCore.Relational (5.0.10)
-- Microsoft.EntityFrameworkCore.Design (5.0.10)
-- Microsoft.EntityFrameworkCore (5.0.10)
-- Microsoft.AspNetCore.SpaServices.Extensions (3.1.12)
-- FluentValidation (10.3.3)
-- AutoMapper.Extensions.Microsoft.DependencyInjection (8.1.1)
-- AutoMapper (10.1.1) 
-- FluentValidation.AspNetCore (10.3.3)
 
-Database: Postgres SQL (You can change connection method for other DBMS at Startup.cs)
+Database: Postgres SQL
 
-Target Framwork: .Net core 3.1 (long time support) or Net 5.0
+Target Framwork: .Net core 6.0 , entity framework 6
 
-Command: 
-- cd WebApplicationAspNetCoreTemplate
-- dotnet ef migrations add init-tbl (you can ignore this command)
-- dotnet ef database update init-tbl (Ensure this command is executed)
+# Migrations:
 
-Global exception:
-- Handle business logic exception
-- context exception
+Linux: 
+- dotnet ef migrations add init -s Project.API -p Project.Data
+- dotnet ef database update init -s Project.API -p Project.Data
 
-Api Response: 
-- Success 
-- Failed
-
-Log:
-- Write log txt
-
-Extensions:
-- ClaimsPrincipalExtensions
+Windows: 
+Set start up project is Project.API and migration project is Project.Data.
 
 Note:
 - Appsetting.json: Please set polling false for development env and true for production env
 
 Demo:
 
-Swagger: 
-![image](https://user-images.githubusercontent.com/48196420/152674001-a637d7f7-d690-4849-b86b-3309894ae6b3.png)
-
-SPA:
-![image](https://user-images.githubusercontent.com/48196420/152788520-c3a2398c-8c87-4c07-b93a-93376818612c.png)
-
-
-
+![image](https://user-images.githubusercontent.com/48196420/173294206-262217c9-6315-4f2e-aa4e-db004ff4aca9.png)
 
 
