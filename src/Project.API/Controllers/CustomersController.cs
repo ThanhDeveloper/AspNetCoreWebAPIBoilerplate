@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Project.API.Filters;
 using Project.Core.DTOs;
-using Project.Core.DTOs.Customer;
+using Project.Core.DTOs.Customers;
 using Project.Core.Entities;
 using Project.Core.Services;
 

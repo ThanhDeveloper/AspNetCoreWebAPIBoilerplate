@@ -1,8 +1,7 @@
 ﻿using Project.Core.Entities;
 
-namespace Project.Core.Services
+namespace Project.Core.Services;
+public interface ICustomerService : IGenericService<Customer>
 {
-    public interface ICustomerService : IGenericService<Customer>
-    {
-    }
 }
+

@@ -27,13 +27,33 @@ namespace Project.Data.Migrations
                     table.PrimaryKey("PK_Customers", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserName = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Password = table.Column<string>(type: "text", nullable: false),
+                    StoredSalt = table.Column<byte[]>(type: "bytea", nullable: false),
+                    DisplayName = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Role = table.Column<string>(type: "text", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "Country", "CreatedDate", "Name", "Phone", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, "VietNam", new DateTime(2022, 6, 13, 3, 10, 41, 660, DateTimeKind.Utc).AddTicks(5490), "Tam Thanh", "69696969", null },
-                    { 2, "VietNam", new DateTime(2022, 6, 13, 3, 10, 41, 660, DateTimeKind.Utc).AddTicks(5570), "Quynh Nhu", "1234567", null }
+                    { 1, "VietNam", new DateTime(2022, 6, 15, 9, 48, 15, 456, DateTimeKind.Utc).AddTicks(1710), "Tam Thanh", "69696969", null },
+                    { 2, "VietNam", new DateTime(2022, 6, 15, 9, 48, 15, 456, DateTimeKind.Utc).AddTicks(1790), "Quynh Nhu", "1234567", null }
                 });
         }
 
@@ -41,6 +61,9 @@ namespace Project.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

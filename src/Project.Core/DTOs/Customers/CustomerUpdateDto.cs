@@ -1,4 +1,4 @@
-namespace Project.Core.DTOs.Customer;
+namespace Project.Core.DTOs.Customers;
 
 public class CustomerUpdateDto
 {

@@ -12,7 +12,7 @@ using Project.Data;
 namespace Project.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220613031041_init")]
+    [Migration("20220615094815_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,7 +62,7 @@ namespace Project.Data.Migrations
                         {
                             Id = 1,
                             Country = "VietNam",
-                            CreatedDate = new DateTime(2022, 6, 13, 3, 10, 41, 660, DateTimeKind.Utc).AddTicks(5490),
+                            CreatedDate = new DateTime(2022, 6, 15, 9, 48, 15, 456, DateTimeKind.Utc).AddTicks(1710),
                             Name = "Tam Thanh",
                             Phone = "69696969"
                         },
@@ -70,10 +70,55 @@ namespace Project.Data.Migrations
                         {
                             Id = 2,
                             Country = "VietNam",
-                            CreatedDate = new DateTime(2022, 6, 13, 3, 10, 41, 660, DateTimeKind.Utc).AddTicks(5570),
+                            CreatedDate = new DateTime(2022, 6, 15, 9, 48, 15, 456, DateTimeKind.Utc).AddTicks(1790),
                             Name = "Quynh Nhu",
                             Phone = "1234567"
                         });
+                });
+
+            modelBuilder.Entity("Project.Core.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("text");
+
+                    b.Property<byte[]>("StoredSalt")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users", (string)null);
                 });
 #pragma warning restore 612, 618
         }
