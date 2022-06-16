@@ -1,6 +1,6 @@
 namespace Project.Core.DTOs.Users;
 
-public class UserCreateDto
+public class UserRegisterDto
 {
     public string UserName { set; get; }
     public string Password { get; set; }

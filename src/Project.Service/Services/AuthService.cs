@@ -25,15 +25,15 @@ public class AuthService : IAuthService
         _configuration = configuration;
     }
 
-    public async Task Register(UserCreateDto userCreateDto)
+    public async Task Register(UserRegisterDto userRegisterDto)
     {
-        var userExist = await _userService.GetByUserName(userCreateDto.UserName.ToLower());
+        var userExist = await _userService.GetByUserName(userRegisterDto.UserName.ToLower());
         if (userExist != null)
         {
-            throw new ArgumentException($"{userCreateDto.UserName} already exists");
+            throw new ArgumentException($"{userRegisterDto.UserName} already exists");
         }
-        var hashSalt  = Cryptography.EncryptPassword(userCreateDto.Password);
-        User user = _mapper.Map<User>(userCreateDto);
+        var hashSalt  = Cryptography.EncryptPassword(userRegisterDto.Password);
+        User user = _mapper.Map<User>(userRegisterDto);
         user.UserName = user.UserName.ToLower();
         user.Password = hashSalt.Hash;
         user.StoredSalt = hashSalt.Salt;
@@ -44,7 +44,7 @@ public class AuthService : IAuthService
     public async Task<UserLoggedDto> Authenticate(UserLoginDto userLoginDto)
     {
         User user = await _userService.GetByUserName(userLoginDto.UserName.ToLower());
-        if (Cryptography.VerifyPassword(userLoginDto.Password, user.StoredSalt, user.Password))
+        if (user != null && Cryptography.VerifyPassword(userLoginDto.Password, user.StoredSalt, user.Password))
         {
             UserLoggedDto userLoginData = _mapper.Map<UserLoggedDto>(user); 
             //create claims details based on the user information

@@ -12,7 +12,7 @@ public class MapProfile : Profile
         CreateMap<CustomerCreateDto, Customer >();
         CreateMap<CustomerUpdateDto, Customer>();
         
-        CreateMap<UserCreateDto, User>();
+        CreateMap<UserRegisterDto, User>();
         CreateMap<User, UserDto>();
         CreateMap<User, UserLoggedDto>();
     }

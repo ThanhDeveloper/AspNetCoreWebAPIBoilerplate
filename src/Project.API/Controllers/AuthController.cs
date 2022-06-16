@@ -19,9 +19,10 @@ namespace Project.API.Controllers
         // POST api/auth/register
         [HttpPost]
         [Route(("register"))]
-        public async Task<IActionResult> Register([FromBody] UserCreateDto userCreateDto)
+        public async Task<IActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
         {
-            await _authService.Register(userCreateDto);
+            return Ok();
+            await _authService.Register(userRegisterDto);
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(201));
         }
         
