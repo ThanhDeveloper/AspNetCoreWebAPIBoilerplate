@@ -1,4 +1,3 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Project.Core.DTOs;
 using Project.Core.DTOs.Users;
@@ -10,13 +9,11 @@ namespace Project.API.Controllers
     [Route("api/auth")]
     public class AuthController : CustomBaseController
     {
-        private readonly IMapper _mapper;
-        private readonly IUserService _userService;
+        private readonly IAuthService _authService;
 
-        public AuthController(IMapper mapper, IUserService userService)
+        public AuthController(IAuthService authService)
         {
-            _mapper = mapper;
-            _userService = userService;
+            _authService = authService;
         }
         
         // POST api/auth/register
@@ -24,15 +21,16 @@ namespace Project.API.Controllers
         [Route(("register"))]
         public async Task<IActionResult> Register([FromBody] UserCreateDto userCreateDto)
         {
-            await _userService.Create(userCreateDto);
+            await _authService.Register(userCreateDto);
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(201));
         }
         
+        // POST api/auth/login
         [HttpPost]
         [Route(("login"))]
         public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
         {
-            var userLogged = await _userService.Authenticate(userLoginDto);
+            var userLogged = await _authService.Authenticate(userLoginDto);
             return CreateActionResult(CustomResponseDto<UserLoggedDto>.Success(200, userLogged));
         }
     }
