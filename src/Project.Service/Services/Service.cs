@@ -4,8 +4,6 @@ using Project.Core.Services;
 using Project.Core.UnitOfWorks;
 using Project.Service.Exceptions;
 using System.Linq.Expressions;
-using Microsoft.AspNetCore.Mvc;
-using Project.Core.DTOs;
 
 namespace Project.Service.Services
 {
@@ -48,7 +46,7 @@ namespace Project.Service.Services
 
             if (objectData == null)
             {
-                throw new NotFoundExcepiton($"{typeof(T).Name} {id} not found");
+                throw new NotFoundException($"{typeof(T).Name} {id} not found");
             }
             return objectData;
         }

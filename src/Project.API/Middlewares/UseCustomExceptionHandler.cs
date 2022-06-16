@@ -20,12 +20,12 @@ namespace Project.API.Middlewares
 
                     var statusCode = exceptionFeature.Error switch
                     {
-                        NotFoundExcepiton => 404,
+                        NotFoundException => 404,
                         _ => 500
                     };
                     context.Response.StatusCode = statusCode;
                     
-                    var response = CustomResponseDto<NoContentDto>.Fail(statusCode, exceptionFeature.Error.Message);
+                    var response = CustomResponseDto<NoContentDto>.Fail(statusCode, "exceptionFeature.Error.Message");
                     
                     await context.Response.WriteAsync(JsonSerializer.Serialize(response));
 

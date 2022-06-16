@@ -11,6 +11,7 @@ using System.Text;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Project.API.Middlewares;
 using Project.Service.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -67,6 +68,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();
 
 app.UseAuthentication();
 

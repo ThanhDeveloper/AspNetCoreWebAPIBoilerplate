@@ -1,13 +1,16 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Project.API.Filters;
 using Project.Core.DTOs;
 using Project.Core.DTOs.Customers;
 using Project.Core.Entities;
 using Project.Core.Services;
+using Project.Service.Common;
 
 namespace Project.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/customers")]
     public class CustomersController : CustomBaseController
@@ -23,6 +26,7 @@ namespace Project.API.Controllers
 
         // GET api/customers
         [HttpGet]
+        [AuthorizeRoles( Constants.RoleGuest , Constants.RoleAdmin)]
         public async Task<IActionResult> Get()
         {
             var customers = await _customerService.GetAllAsync();
@@ -32,6 +36,7 @@ namespace Project.API.Controllers
         
         // GET api/customers/id
         [HttpGet("{id}")]
+        [AuthorizeRoles(Constants.RoleAdmin)]
         [ServiceFilter(typeof(NotFoundIdFilter<Customer>))]
         public async Task<IActionResult> GetById(int id)
         {
@@ -42,6 +47,7 @@ namespace Project.API.Controllers
         
         // POST api/customers
         [HttpPost]
+        [AuthorizeRoles(Constants.RoleAdmin)]
         public async Task<IActionResult> Create(CustomerCreateDto customerCreateDto)
         {
             var customerCreated = await _customerService.AddAsync(_mapper.Map<Customer>(customerCreateDto));
