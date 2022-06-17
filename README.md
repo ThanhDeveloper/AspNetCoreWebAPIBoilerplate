@@ -1,11 +1,20 @@
-# WebApplicationAspNetCoreTemplate
+This repository has consisted of a sample solution which explains the topics in the below list
 
-This project building on the repository - service pattern, separation layer between the data and domain layers of an application, dependency injection, auto mapper, handle global exception, etc... 
-
+- n-tier Architecture
+- Asp.Net Core API Web API Project
+- API Endpoint URL structure Best Practices
+- Entity Framework Core
+- Repository Service Pattern
+- UnitOfWork Pattern
+- AutoMapper
+- Global Error Handling
+- Custom Action Filter
+- Authentication with JWT and role
+- Support dockerize application
 
 Database: Postgres SQL
 
-Target Framwork: .Net core 6.0 , entity framework 6
+Target Framwork: .Net core 6.0 , entity framework core
 
 # Migrations:
 
@@ -21,8 +30,5 @@ Note:
 
 Demo:
 
-![image](https://user-images.githubusercontent.com/48196420/173294206-262217c9-6315-4f2e-aa4e-db004ff4aca9.png)
-
-# Docker support
-- Support dockerize application
+![image](https://user-images.githubusercontent.com/48196420/174226680-3d02516c-bf2e-4ad3-a6e0-e7ab6fe98bc5.png)
 
