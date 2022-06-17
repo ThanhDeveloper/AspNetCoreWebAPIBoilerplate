@@ -26,7 +26,7 @@ namespace Project.API.Controllers
 
         // GET api/customers
         [HttpGet]
-        [AuthorizeRoles( Constants.RoleGuest , Constants.RoleAdmin)]
+        [CustomAuthorize(Authorities = new[] { Constants.RoleAdmin })]
         public async Task<IActionResult> Get()
         {
             var customers = await _customerService.GetAllAsync();
@@ -36,7 +36,7 @@ namespace Project.API.Controllers
         
         // GET api/customers/id
         [HttpGet("{id}")]
-        [AuthorizeRoles(Constants.RoleAdmin)]
+        [CustomAuthorize(Authorities = new[] { Constants.RoleGuest })]
         [ServiceFilter(typeof(NotFoundIdFilter<Customer>))]
         public async Task<IActionResult> GetById(int id)
         {
@@ -47,7 +47,7 @@ namespace Project.API.Controllers
         
         // POST api/customers
         [HttpPost]
-        [AuthorizeRoles(Constants.RoleAdmin)]
+        [CustomAuthorize(Authorities = new[] { Constants.RoleAdmin })]
         public async Task<IActionResult> Create(CustomerCreateDto customerCreateDto)
         {
             var customerCreated = await _customerService.AddAsync(_mapper.Map<Customer>(customerCreateDto));

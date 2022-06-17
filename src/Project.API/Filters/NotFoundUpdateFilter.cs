@@ -35,6 +35,6 @@ public class NotFoundUpdateFilter<T> : IAsyncActionFilter where T : BaseEntity
             return;
         }
         
-        context.Result = new NotFoundObjectResult(CustomResponseDto<NoContentDto>.Fail(404, $"{typeof(T).Name} id {id} not found"));
+        context.Result = new NotFoundObjectResult(CustomResponseDto<NoContentDto>.Fail(StatusCodes.Status404NotFound, $"{typeof(T).Name} id {id} not found"));
     }
 }

@@ -21,7 +21,6 @@ namespace Project.API.Controllers
         [Route(("register"))]
         public async Task<IActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
         {
-            return Ok();
             await _authService.Register(userRegisterDto);
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(201));
         }
