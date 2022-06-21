@@ -8,7 +8,7 @@ namespace Project.API.Controllers
     public class CustomBaseController : ControllerBase
     {
         [NonAction]
-        public IActionResult CreateActionResult<T>(CustomResponseDto<T> response)
+        protected IActionResult CreateActionResult<T>(CustomResponseDto<T> response)
         {
             if (response.StatusCode == 204)
                 return new ObjectResult(null)

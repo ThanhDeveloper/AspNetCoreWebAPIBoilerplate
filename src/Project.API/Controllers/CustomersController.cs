@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Project.API.Filters;
@@ -10,7 +11,7 @@ using Project.Service.Common;
 
 namespace Project.API.Controllers
 {
-    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("api/customers")]
     public class CustomersController : CustomBaseController
@@ -25,13 +26,13 @@ namespace Project.API.Controllers
         }
 
         // GET api/customers
-        [HttpGet]
         [CustomAuthorize(Authorities = new[] { Constants.RoleAdmin })]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             var customers = await _customerService.GetAllAsync();
             var customerDtos = _mapper.Map<List<CustomerDto>>(customers.ToList());
-            return CreateActionResult(CustomResponseDto<List<CustomerDto>>.Success(200, customerDtos));
+            return CreateActionResult(CustomResponseDto<List<CustomerDto>>.Success(StatusCodes.Status200OK, customerDtos));
         }
         
         // GET api/customers/id
@@ -42,7 +43,7 @@ namespace Project.API.Controllers
         {
             var customer = await _customerService.GetByIdAsync(id);
             var customerDto = _mapper.Map<CustomerDto>(customer);
-            return CreateActionResult(CustomResponseDto<CustomerDto>.Success(200, customerDto));
+            return CreateActionResult(CustomResponseDto<CustomerDto>.Success(StatusCodes.Status200OK, customerDto));
         }
         
         // POST api/customers
@@ -52,7 +53,7 @@ namespace Project.API.Controllers
         {
             var customerCreated = await _customerService.AddAsync(_mapper.Map<Customer>(customerCreateDto));
             var newCustomer = _mapper.Map<CustomerDto>(customerCreated);
-            return CreateActionResult(CustomResponseDto<CustomerDto>.Success(201, newCustomer));
+            return CreateActionResult(CustomResponseDto<CustomerDto>.Success(StatusCodes.Status201Created, newCustomer));
         }
         
         // PUT api/customers
@@ -61,7 +62,7 @@ namespace Project.API.Controllers
         public async Task<IActionResult> Update(CustomerUpdateDto customerUpdateDto)
         {
             await _customerService.UpdateAsync(_mapper.Map<Customer>(customerUpdateDto));
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(StatusCodes.Status204NoContent));
         }
         
         // DELETE api/customers/id
@@ -71,7 +72,7 @@ namespace Project.API.Controllers
         {
             var product = await _customerService.GetByIdAsync(id);
             await _customerService.RemoveAsync(product);
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(StatusCodes.Status204NoContent));
         }
     }
 }

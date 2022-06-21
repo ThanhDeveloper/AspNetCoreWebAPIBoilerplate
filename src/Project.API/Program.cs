@@ -9,12 +9,28 @@ using Project.Service.Mapping;
 using System.Reflection;
 using System.Text;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Project.API.Middlewares;
 using Project.Service.Validations;
 
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy  =>
+        {
+            policy.WithOrigins("http://localhost:3000",
+                "http://www.contoso.com")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
+});
 
 // Add services to the container.
 builder.Services.AddControllers(options =>  options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserLoginDtoValidator>());
@@ -26,6 +42,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+/*
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
@@ -39,6 +56,48 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
+*/
+
+builder.Services.AddAuthentication(i =>
+    {
+        i.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        i.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        i.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        i.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            // set ClockSkew to zero so tokens expire exactly at token expiration time 
+            ClockSkew = TimeSpan.Zero
+        };
+        options.SaveToken = true;
+        options.Events = new JwtBearerEvents();
+        options.Events.OnMessageReceived = context => {
+
+            if (context.Request.Cookies.ContainsKey("X-Access-Token"))
+            {
+                context.Token = context.Request.Cookies["X-Access-Token"];
+            }
+
+            return Task.CompletedTask;
+        };
+    })
+    .AddCookie(options =>
+    {
+        options.Cookie.SameSite = SameSiteMode.Strict;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.IsEssential = true;
+    });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -67,7 +126,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseCustomException();
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using System.Security.Authentication;
+using Microsoft.AspNetCore.Diagnostics;
 using Project.Core.DTOs;
 using Project.Service.Exceptions;
 using System.Text.Json;
@@ -18,17 +19,20 @@ namespace Project.API.Middlewares
 
                     var exceptionFeature = context.Features.Get<IExceptionHandlerFeature>();
 
-                    var statusCode = exceptionFeature.Error switch
+                    if (exceptionFeature != null)
                     {
-                        NotFoundException => 404,
-                        _ => 500
-                    };
-                    context.Response.StatusCode = statusCode;
+                        var statusCode = exceptionFeature.Error switch
+                        {
+                            NotFoundException => StatusCodes.Status404NotFound,
+                            AuthenticationException => StatusCodes.Status400BadRequest,
+                            _ => StatusCodes.Status500InternalServerError
+                        };
+                        context.Response.StatusCode = statusCode;
                     
-                    var response = CustomResponseDto<NoContentDto>.Fail(statusCode, "exceptionFeature.Error.Message");
+                        var response = CustomResponseDto<NoContentDto>.Fail(statusCode, exceptionFeature.Error.Message);
                     
-                    await context.Response.WriteAsync(JsonSerializer.Serialize(response));
-
+                        await context.Response.WriteAsync(JsonSerializer.Serialize(response));
+                    }
                 });
             });
         }
