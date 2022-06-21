@@ -9,8 +9,9 @@ This repository has consisted of a sample solution which explains the topics in 
 - AutoMapper
 - Global Error Handling
 - Custom Action Filter
-- Authentication with JWT and role
+- Authentication with JWT http only cookies and role
 - Support dockerize application
+- Handle global error
 
 Database: Postgres SQL
 
@@ -30,5 +31,6 @@ Note:
 
 Demo:
 
-![image](https://user-images.githubusercontent.com/48196420/174226680-3d02516c-bf2e-4ad3-a6e0-e7ab6fe98bc5.png)
+![image](https://user-images.githubusercontent.com/48196420/174745465-8b0fac12-d104-4cfb-af02-320fc411abf5.png)
+
 
