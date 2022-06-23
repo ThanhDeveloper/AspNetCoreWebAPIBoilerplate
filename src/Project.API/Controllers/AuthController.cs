@@ -55,11 +55,11 @@ namespace Project.API.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         [Route("logout")]
-        public async Task<IActionResult> Logout()
+        public Task<IActionResult> Logout()
         {
             Response.Cookies.Delete("X-Access-Token");
             Response.Cookies.Delete("X-Refresh-Token");
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(StatusCodes.Status200OK));
+            return Task.FromResult(CreateActionResult(CustomResponseDto<NoContentDto>.Success(StatusCodes.Status200OK)));
         }
 
         [HttpGet("refresh")]
