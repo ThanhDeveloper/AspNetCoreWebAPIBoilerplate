@@ -5,14 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Project.API.Filters;
 using Project.API.Modules;
 using Project.Data;
-using Project.Service.Mapping;
 using System.Reflection;
 using System.Text;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Project.API.Middlewares;
+using Project.Service.Mapping.Users;
 using Project.Service.Validations;
 
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -87,7 +86,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(typeof(NotFoundIdFilter<>));
 builder.Services.AddScoped(typeof(NotFoundUpdateFilter<>));
-builder.Services.AddAutoMapper(typeof(MapProfile));
+builder.Services.AddAutoMapper(typeof(UserProfile));
 
 builder.Services.AddDbContext<DatabaseContext>(x =>
 {

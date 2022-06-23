@@ -8,6 +8,7 @@ using Project.Data.UnitOfWorks;
 using Project.Service.Mapping;
 using Project.Service.Services;
 using System.Reflection;
+using Project.Service.Mapping.Users;
 using Module = Autofac.Module;
 
 namespace Project.API.Modules
@@ -23,7 +24,7 @@ namespace Project.API.Modules
 
             var apiAssembly = Assembly.GetExecutingAssembly();
             var repoAssembly = Assembly.GetAssembly(typeof(DatabaseContext));
-            var serviceAssembly = Assembly.GetAssembly(typeof(MapProfile));
+            var serviceAssembly = Assembly.GetAssembly(typeof(UserProfile));
 
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
