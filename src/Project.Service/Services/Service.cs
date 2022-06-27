@@ -2,7 +2,7 @@
 using Project.Core.Repositories;
 using Project.Core.Services;
 using Project.Core.UnitOfWorks;
-using Project.Service.Exceptions;
+using Project.Service.Common.Exceptions;
 using System.Linq.Expressions;
 
 namespace Project.Service.Services

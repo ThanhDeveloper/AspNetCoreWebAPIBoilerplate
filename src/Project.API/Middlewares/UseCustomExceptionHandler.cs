@@ -1,7 +1,7 @@
 ﻿using System.Security.Authentication;
 using Microsoft.AspNetCore.Diagnostics;
 using Project.Core.DTOs;
-using Project.Service.Exceptions;
+using Project.Service.Common.Exceptions;
 using System.Text.Json;
 
 namespace Project.API.Middlewares
@@ -25,6 +25,7 @@ namespace Project.API.Middlewares
                         {
                             NotFoundException => StatusCodes.Status404NotFound,
                             AuthenticationException => StatusCodes.Status400BadRequest,
+                            ArgumentException => StatusCodes.Status400BadRequest,
                             _ => StatusCodes.Status500InternalServerError
                         };
                         context.Response.StatusCode = statusCode;

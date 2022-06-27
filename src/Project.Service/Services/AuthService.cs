@@ -10,7 +10,7 @@ using Project.Core.Entities;
 using Project.Core.Services;
 using Project.Service.Common;
 using Project.Service.Common.Security;
-using Project.Service.Exceptions;
+using Project.Service.Common.Exceptions;
 
 namespace Project.Service.Services;
 
@@ -73,7 +73,7 @@ public class AuthService : IAuthService
             new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-            new Claim(ClaimTypes.Name, user.Id.ToString()),
+            new Claim(Constants.ClaimTypeUserId, user.Id.ToString()),
             new Claim(ClaimTypes.Email, user.Email),
             new Claim(ClaimTypes.Role, user.Role),
         };
